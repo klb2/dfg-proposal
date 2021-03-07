@@ -56,15 +56,7 @@
 \doublehyphendemerits 50000000
 
 
-
 %%% Translations %%%
-\DeclareTranslationFallback{total}{Summe}
-\DeclareTranslation{German}{total}{Summe}
-\DeclareTranslation{English}{total}{Total}
-\DeclareTranslation{German}{page}{Seite}
-\DeclareTranslation{English}{page}{Page}
-\DeclareTranslation{German}{of}{von}
-\DeclareTranslation{English}{of}{of}
 \DeclareTranslationFallback{titletop}{Antrag an die Deutsche Forschungsgemeinschaft}
 \DeclareTranslation{English}{titletop}{Proposal to the Deutsche Forschungsgemeinschaft\\(German Research Foundation)}
 \DeclareTranslation{German}{titletop}{Antrag an die Deutsche Forschungsgemeinschaft}
@@ -84,8 +76,15 @@
 
 
 
-
-
+\DeclareTranslationFallback{total}{Summe}
+\DeclareTranslation{German}{total}{Summe}
+\DeclareTranslation{English}{total}{Total}
+\DeclareTranslation{German}{page}{Seite}
+\DeclareTranslation{English}{page}{Page}
+\DeclareTranslation{German}{of}{von}
+\DeclareTranslation{English}{of}{of}
+\DeclareTranslation{German}{researchgoal}{Ziel}
+\DeclareTranslation{English}{researchgoal}{Goal}
 
 \newcommand{\total}{\GetTranslation{total}}
 \renewcommand{\pagemark}{\GetTranslation{page} \thepage~\GetTranslation{of} \pageref{LastPage}}
@@ -177,7 +176,7 @@
 }{\end{tcolorbox}}
 
 \newcounter{researchgoal}
-\newcommand{\goal}[1]{\refstepcounter{researchgoal}\textbf{Goal~\arabic{researchgoal}} #1\par}
+\newcommand{\goal}[1]{\refstepcounter{researchgoal}\textbf{\GetTranslation{researchgoal}~\arabic{researchgoal}} #1\par}
 
 
 \newcommand{\maketitlepage}{
