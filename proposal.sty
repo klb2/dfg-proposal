@@ -73,9 +73,6 @@
 \DeclareTranslation{German}{titleproptype}{Projektantrag}
 \fi
 
-
-
-
 \DeclareTranslationFallback{total}{Summe}
 \DeclareTranslation{German}{total}{Summe}
 \DeclareTranslation{English}{total}{Total}
@@ -85,13 +82,17 @@
 \DeclareTranslation{English}{of}{of}
 \DeclareTranslation{German}{researchgoal}{Ziel}
 \DeclareTranslation{English}{researchgoal}{Goal}
+\DeclareTranslation{German}{summary}{Zusammenfassung}
+\DeclareTranslation{English}{summary}{Summary}
+
+
 
 \newcommand{\total}{\GetTranslation{total}}
 \renewcommand{\pagemark}{\GetTranslation{page} \thepage~\GetTranslation{of} \pageref{LastPage}}
 
 % Layout and Geometry
-\ohead{\pagemark}
-\cfoot{}
+\ohead*{\pagemark}
+\cfoot*{}
 \chead{}
 
 \KOMAoptions{paper=a4}
@@ -170,7 +171,7 @@
 	\begin{tcolorbox}[sidebyside, lefthand width=1.2cm, sidebyside align=top seam, enhanced,
 		segmentation code={\path[draw=black!50!white, very thick]($(segmentation.south) + (0, .3)$) -- ($(segmentation.north) - (0, .3)$);},
 		colback=white, coltitle=black, colbacktitle=white,
-		adjusted title={WP\,\thewp{} -- Summary}, fonttitle=\bfseries]
+		adjusted title={WP\,\thewp{} -- \GetTranslation{summary}}, fonttitle=\bfseries]
 	\begin{center}\input{lamp.tex}\end{center}
 	\tcblower
 }{\end{tcolorbox}}
@@ -213,3 +214,11 @@
 	\end{center}
 \end{titlepage}
 }
+
+
+
+\DeclareTranslation{German}{starting-point}{Ausgangslage}
+\DeclareTranslation{English}{starting-point}{Starting Point}
+
+\DeclareTranslation{German}{preliminary-work}{Stand der Forschung und eigene Vorarbeiten}
+\DeclareTranslation{English}{preliminary-work}{State of the art and preliminary work}
