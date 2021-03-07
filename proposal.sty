@@ -1,7 +1,16 @@
 \ProvidesPackage{proposal}[2021/01/18]
+\RequirePackage{kvoptions}
+\RequirePackage{etoolbox}
+
+\SetupKeyvalOptions{family=proposal,prefix=proposal@}
+\DeclareBoolOption[false]{firsttime}
+\ProcessKeyvalOptions{proposal}
+%\ProcessOptions\relax
+
 
 \RequirePackage{babel}
 \RequirePackage[babel]{microtype}
+\RequirePackage{translations}
 
 \RequirePackage{amsmath}
 \RequirePackage[exponent-product={\cdot}]{siunitx}
@@ -46,21 +55,40 @@
 \hyphenpenalty 3000
 \doublehyphendemerits 50000000
 
-\newcommand{\total}{}
-\DeclareOption{german}{
-    \sisetup{locale=DE}
-    \AtBeginDocument{\selectlanguage{ngerman}}
-    \renewcommand{\pagemark}{Seite \thepage~von \pageref{LastPage}}
-    \renewcommand{\total}{Summe}
-}
-\DeclareOption{english}{
-    \sisetup{locale=US}
-    \AtBeginDocument{\selectlanguage{english}}
-	\renewcommand{\pagemark}{page \thepage~of \pageref{LastPage}}
-    \renewcommand{\total}{Total}
-}
-\ExecuteOptions{german}
-\ProcessOptions\relax
+
+
+%%% Translations %%%
+\DeclareTranslationFallback{total}{Summe}
+\DeclareTranslation{German}{total}{Summe}
+\DeclareTranslation{English}{total}{Total}
+\DeclareTranslation{German}{page}{Seite}
+\DeclareTranslation{English}{page}{Page}
+\DeclareTranslation{German}{of}{von}
+\DeclareTranslation{English}{of}{of}
+\DeclareTranslationFallback{titletop}{Antrag an die Deutsche Forschungsgemeinschaft}
+\DeclareTranslation{English}{titletop}{Proposal to the Deutsche Forschungsgemeinschaft\\(German Research Foundation)}
+\DeclareTranslation{German}{titletop}{Antrag an die Deutsche Forschungsgemeinschaft}
+\DeclareTranslationFallback{titleongrant}{zur Förderung des Forschungsprojekts}
+\DeclareTranslation{English}{titleongrant}{on the granting of a research project}
+\DeclareTranslation{German}{titleongrant}{zur Förderung des Forschungsprojekts}
+
+\DeclareTranslationFallback{titleproptype}{Projektantrag}
+\ifproposal@firsttime
+\DeclareTranslation{English}{titleproptype}{First-Time Research Grant}
+\DeclareTranslation{German}{titleproptype}{Erstantrag}
+\else
+\DeclareTranslation{English}{titleproptype}{Research Grant}
+\DeclareTranslation{German}{titleproptype}{Projektantrag}
+\fi
+
+
+
+
+
+
+
+\newcommand{\total}{\GetTranslation{total}}
+\renewcommand{\pagemark}{\GetTranslation{page} \thepage~\GetTranslation{of} \pageref{LastPage}}
 
 % Layout and Geometry
 \ohead{\pagemark}
@@ -158,13 +186,13 @@
 		\vspace*{3em}
 		\large
 		
-		{\bfseries Proposal to the Deutsche Forschungsgemeinschaft\\(German Research Foundation)}
+		{\bfseries \GetTranslation{titletop}}
 		
 		Kennedyallee 40, 53175 Bonn
 		
 		\vspace{4ex}
 		
-		on the granting of a research project
+		\GetTranslation{titleongrant}
 		
 		\vspace{9ex}
 		
@@ -172,7 +200,7 @@
 		
 		\medskip
 		
-		Research Grant
+		\GetTranslation{titleproptype}
 		
 		\vspace{9ex}
 		
