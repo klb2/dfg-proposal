@@ -1,0 +1,188 @@
+\ProvidesPackage{proposal}[2021/01/18]
+
+\RequirePackage{babel}
+\RequirePackage[babel]{microtype}
+
+\RequirePackage{amsmath}
+\RequirePackage[exponent-product={\cdot}]{siunitx}
+\RequirePackage{fp}
+
+\RequirePackage{eurosym}
+
+\RequirePackage[usenames,dvipsnames,svgnames]{xcolor}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
+
+\RequirePackage{geometry}
+\RequirePackage{scrlayer-scrpage}
+\RequirePackage{lastpage}
+\RequirePackage{helvet}
+
+\RequirePackage[backend = biber,
+    style = alphabetic,%numeric
+    giveninits = true,
+    natbib = true,
+    hyperref = true,
+    maxbibnames = 10,
+    url=false,
+    doi=true,
+    eprint=true,
+    %sorting=none,%remove this to have things sorted, e.g. use style=alphabetic
+    ]{biblatex}
+\RequirePackage[babel]{csquotes}
+\renewcommand*{\labelalphaothers}{}
+
+
+%% von Hurenkindern und Schusterjungen
+\clubpenalty = 10000
+\widowpenalty = 10000 \displaywidowpenalty = 10000
+
+%% weniger underful hboxes
+\tolerance=3000
+\emergencystretch=15pt
+\hbadness=2000 %% too many underfull hbox warnings
+
+%% keine zwei Trennstriche in untereinanderliegenden Zeilen
+\hyphenpenalty 3000
+\doublehyphendemerits 50000000
+
+\newcommand{\total}{}
+\DeclareOption{german}{
+    \sisetup{locale=DE}
+    \AtBeginDocument{\selectlanguage{ngerman}}
+    \renewcommand{\pagemark}{Seite \thepage~von \pageref{LastPage}}
+    \renewcommand{\total}{Summe}
+}
+\DeclareOption{english}{
+    \sisetup{locale=US}
+    \AtBeginDocument{\selectlanguage{english}}
+	\renewcommand{\pagemark}{page \thepage~of \pageref{LastPage}}
+    \renewcommand{\total}{Total}
+}
+\ExecuteOptions{german}
+\ProcessOptions\relax
+
+% Layout and Geometry
+\ohead{\pagemark}
+\cfoot{}
+\chead{}
+
+\KOMAoptions{paper=a4}
+\KOMAoption{fontsize}{11pt}
+\geometry{headheight=28pt, tmargin=70pt, lmargin=55pt, rmargin=55pt, bmargin=70pt}
+\pagestyle{plain}
+
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0em}
+
+% Fonts
+\setkomafont{section}{\normalsize\bfseries}
+\setkomafont{subsection}{\normalsize\bfseries}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\headfont}{\sffamily\footnotesize}
+
+
+\addtokomafont{caption}{\small}
+\setkomafont{captionlabel}{\bfseries}
+
+
+\newcommand{\subsubsubsection}[1]{\paragraph{#1} \mbox{} \par}
+\setcounter{secnumdepth}{5}
+\newcommand{\intextheading}[1]{\vskip 1em plus 1em minus .3em \textit{#1}\par} %TODO: do not end paragraph but add some vspace
+
+% Fund calculations
+% Ensure that if round-precision is specified, the give number of decimals is printed (necessary for prices in Euro)
+\sisetup{round-integer-to-decimal} 
+\DeclareSIUnit{\sieuro}{\mbox{\euro}}
+
+% Place this environment in funds section to automatically add up costs using the macro 'position'.
+\newenvironment{funds}[1][]
+    % Define variable funds for calculation. Store argument (description of total) in new command.
+    {\def\funds{0.00} \newcommand{\totaldescr}{#1}}
+    % Print total of environment with provided description. 
+    {\rule{\textwidth}{0.5pt} \par \total~\totaldescr \hfill \SI[round-mode = places, round-precision = 2]{\funds}{\sieuro}}
+    
+% To be used inside a funds environment. Place text and add given price to totals.
+\newcommand{\position}[2]{\par #1 \hfill \SI[round-mode = places, round-precision = 2]{#2}{\sieuro} \FPeval{\funds}{\funds + #2}}
+% Same as above but with multiples of a position.
+\newcommand{\positionmul}[3]{\par #1 \hfill \num{#3} $\times$ \SI[round-mode = places, round-precision = 2]{#2}{\sieuro} \FPeval{\funds}{\funds + #3*#2}}
+
+
+
+\xdef\Colored{0}
+\ifnum\Colored > 0
+\xdef\LWS{0.6mm}
+\xdef\ColorYO{yellow!30!orange}
+\xdef\ColorYR{yellow!70!red}
+\xdef\ColorRY{red!90!yellow}
+\xdef\ColorYB{yellow!90!brown}
+\xdef\ColorYRB{yellow!90!red}
+\xdef\ColorR{red}
+\xdef\ColorO{orange}
+\else
+\xdef\LWS{0.4mm}
+\xdef\ColorYO{gray!80!black}
+\xdef\ColorYR{gray!70}
+\xdef\ColorRY{gray!60!black}
+\xdef\ColorYB{gray!90}
+\xdef\ColorYRB{gray!50}
+\xdef\ColorR{black}
+\xdef\ColorO{gray!95!black}
+\fi
+
+\newcounter{wp}
+\newenvironment{workpackage}[1][]{\refstepcounter{wp}
+%	\vspace*{0.5cm}\hrulefill
+	\bigskip\hrulefill{}
+	
+	{\usekomafont{section} WP \thewp~#1.}
+	\par
+	\bigskip
+}{\par\ignorespacesafterend}
+\newenvironment{wpsummary}{
+	\begin{tcolorbox}[sidebyside, lefthand width=1.2cm, sidebyside align=top seam, enhanced,
+		segmentation code={\path[draw=black!50!white, very thick]($(segmentation.south) + (0, .3)$) -- ($(segmentation.north) - (0, .3)$);},
+		colback=white, coltitle=black, colbacktitle=white,
+		adjusted title={WP\,\thewp{} -- Summary}, fonttitle=\bfseries]
+	\begin{center}\input{lamp.tex}\end{center}
+	\tcblower
+}{\end{tcolorbox}}
+
+\newcounter{researchgoal}
+\newcommand{\goal}[1]{\refstepcounter{researchgoal}\textbf{Goal~\arabic{researchgoal}} #1\par}
+
+
+\newcommand{\maketitlepage}{
+\begin{titlepage}
+	\begin{center}
+		\vspace*{3em}
+		\large
+		
+		{\bfseries Proposal to the Deutsche Forschungsgemeinschaft\\(German Research Foundation)}
+		
+		Kennedyallee 40, 53175 Bonn
+		
+		\vspace{4ex}
+		
+		on the granting of a research project
+		
+		\vspace{9ex}
+		
+		\textbf{\@title}
+		
+		\medskip
+		
+		Research Grant
+		
+		\vspace{9ex}
+		
+		{\renewcommand{\and}{\\[1em]and\\[1em]}
+		\@author
+		}
+	
+		\vspace{9ex}
+		
+		\today
+	\end{center}
+\end{titlepage}
+}
