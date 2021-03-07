@@ -8,7 +8,7 @@ A LaTeX template for a basic DFG (Deutsche Forschungsgemeinschaft, German Resear
 
 This template is based on the template of [Martin
 Hölzer](https://github.com/hoelzer/dfg) and based on the RTF
-[DFG form 53_01_en 04/20](http://www.dfg.de/formulare/53_01_elan/53_01_en_elan.rtf), __last accessed in August 2020__.
+[DFG form 53_01_en 04/20](http://www.dfg.de/formulare/53_01_elan/53_01_en_elan.rtf), __last accessed in March 2021__.
 
 Thanks to [@nneuss](https://github.com/nneuss) a German version is also available. Please use `dfg-german.tex` instead of `dfg.tex` for the German version. 
 

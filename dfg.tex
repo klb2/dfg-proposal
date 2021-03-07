@@ -62,7 +62,6 @@
 \begin{document}
 \maketitlepage
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% For first-time proposals, please also note the following: Please provide a
 % concise description of your previous postgraduate training and research,
@@ -100,9 +99,9 @@ University 2, Institute/Group Name (Abbr2)
 
 This is a dummy citation~\cite{Hoelzer:17}. Yeah. And another
 one~\cite{Gerst:18}. Wuhuh. These citations~\cite{Hoelzer:16, Desiro:18} will
-not be shown in the "\ref{sec:bib}~Bibliography" section, because they are
+not be shown in the \enquote{\ref{sec:bib}~Bibliography} section, because they are
 already listed as \verb=\addtocategory{reviewed}{Hoelzer:16}= and
-\verb=\addtocategory{nonreviewed}{Desiro:18}= in the praeambl and therefore
+\verb=\addtocategory{nonreviewed}{Desiro:18}= in the preamble and therefore
 shown in subsubsections \emph{Articles published by outlets with scientific
 quality \dots} and \emph{Other publications, both peer-reviewed and non-peer-reviewed}. 
 
@@ -119,6 +118,7 @@ quality \dots} and \emph{Other publications, both peer-reviewed and non-peer-rev
 
 \subsubsection{Other publications, both peer-reviewed and non-peer-reviewed}
 \printbibliography[category=nonreviewed, heading=none]
+
 
 \subsubsection{Patents}
 
@@ -278,8 +278,8 @@ The following individuals will work on the project but will not be paid out of
 the project funds:
 
 \begin{itemize}
-\item Dude1
-\item Dude2
+	\item Dude1
+	\item Dude2
 \end{itemize}
 
 \subsection{Researchers in Germany with whom you have agreed to cooperate on this project}
@@ -291,7 +291,7 @@ the project funds:
 \subsection{Researchers with whom you have collaborated scientifically within the past three years}
 % This information will help avoid potential conflicts of interest.
 \begin{itemize}
-  \item Prof.\ Dr.\ Dr.\ Foo Bar
+	\item Prof.\ Dr.\ Dr.\ Foo Bar
 \end{itemize}
 
 \subsection{Project-relevant cooperation with commercial enterprises}
@@ -305,6 +305,13 @@ None.
 \subsection{Scientific equipment}
 %List larger instruments that will be available to you for the project. These may include large computer facilities if computing capacity will be needed.
 \todo{Text}
+As something can be seen in figure~\ref{fig:some_nice_graph} \todo{the figure has to be made}.
+\begin{figure}
+	\centering
+%	\missingfigure{schematics of a souvereign-class warp-reactor}
+	\caption{warp reactor}
+	\label{fig:some_nice_graph}
+\end{figure}
 
 \subsection{Other submissions}
 %List any funding proposals for this project and/or major instrumentation previously submitted to a third party.
@@ -323,40 +330,39 @@ None.
 
 \subsubsection{Funding for Staff}
 \begin{funds}[funding for staff]
-The following staff positions are requested for \todo{xx} years each:
-
-\positionmul{Research associate, TV-L 13, 36 months}{5375}{36}
-\positionmul{Hiwi, TV-L 13, 12 months}{450}{12}
-
+	The following staff positions are requested for \todo{xx} years each:
+	
+	\positionmul{Research associate, TV-L 13, 36 months}{5375}{36}
+	\positionmul{Hiwi, TV-L 13, 12 months}{450}{12}
 \end{funds}
 
 
 \subsubsection{Direct Project Costs}
 \begin{funds}[direct project costs]
-
-\subsubsubsection{Equipment up to 10\,000\,\euro, Software and Consumables}
-
-\position{Next-Generation Sequencing, Illumina HiSeq\,2500}{3000}
-
-\subsubsubsection{Travel Expenses}
-We apply for a total of \SI{10000}{\sieuro} for travel expenses.
-\position{Travel}{10000}
-
-\subsubsubsection{Visiting Researchers \textnormal{(excluding Mercator Fellows)}}
-None.
-
-\subsubsubsection{Expenses for Laboratory Animals}
-None.
-
-\subsubsubsection{Other Costs}
-None.
-
-\subsubsubsection{Project-related publication expenses}
-We apply for a total of 1500\euro\ for publication expenses (750\,\euro\ per
-year). Furthermore, we will submit articles to open access preprint repositories
-such as \href{https://www.biorxiv.org/}{\textit{bioRxiv}}.
-\position{Publication costs}{1500}
-
+	
+	\subsubsubsection{Equipment up to 10\,000\,\euro, Software and Consumables}
+	
+	\position{Next-Generation Sequencing, Illumina HiSeq\,2500}{3000}
+	
+	\subsubsubsection{Travel Expenses}
+	We apply for a total of 10\,000\,\euro\ for travel expenses.
+	\position{Travel}{10000}
+	
+	\subsubsubsection{Visiting Researchers \textnormal{(excluding Mercator Fellows)}}
+	None.
+	
+	\subsubsubsection{Expenses for Laboratory Animals}
+	None.
+	
+	\subsubsubsection{Other Costs}
+	None.
+	
+	\subsubsubsection{Project-related publication expenses}
+	We apply for a total of 1500\euro\ for publication expenses (750\,\euro\ per
+	year). Furthermore, we will submit articles to open access preprint repositories
+	such as \href{https://www.biorxiv.org/}{\textit{bioRxiv}}.
+	\position{Publication costs}{1500}
+	
 \end{funds}
 
 \subsubsection{Instrumentation}
@@ -390,9 +396,11 @@ Our laboratory is well equipped; all necessary instruments are available.
 \subsection{Module Workshop Funding}
 \todo{Text}
 
-\subsection{Module Public Relations Funding}
+\subsection{Module Public Relations}
 \todo{Text}
 
+\subsection{Module Standard Allowance for Gender Equality Measures}
+\todo{Please detail what measures are planned to promote diversity and equal opportunities.  If you are submitting your proposal for an individual research grant within a network, note that this standard allowance may only be applied for within the coordination project. The coordination project must combine all such requests in its calculation.}
 
 \section{Signature}
 
